@@ -1,0 +1,113 @@
+@charset "UTF-8";
+
+body {
+  margin: 0;
+  font-family: "Muli", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  background-color: rgb(220,220,220)
+}
+
+.navbar
+{
+
+  width:100%;
+  position: relative;
+  background-color: #3B5998;
+
+}
+
+#form_hist
+{
+  padding-top: 20px;
+  position: relative;
+}
+
+.navbar-brand
+{
+  position: relative;
+  left: 50%;
+  transform: translatex(-50%);
+}
+
+
+.input-group{
+  border-style: solid;
+  border-width: 1px 1px 1px 1px;
+  border-radius: 5px;
+  border-color: #dfdfdf!important;
+  margin-top: 10px;
+}
+
+.input-group-addon {
+  right: 100%;
+}
+
+.card.bg-light 
+{ 
+  
+  left: 20%;
+}
+
+.card.bg-dark 
+{ 
+  
+  left: 10%;
+}
+
+.card-history
+{ 
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px 1px 1px 1px;
+  border-color: #dfdfdf!important;
+  position:relative; 
+  padding-top: 10px;
+  background-color: white;
+  max-height: 470px;
+}
+
+.btn
+{
+  
+  right: 2%;
+  position: absolute;
+}
+.maps_div
+{
+margin-top: 80px;
+
+}
+
+hr {
+  border-color: #EEEEEE -moz-use-text-color #FFFFFF;
+  border-style: solid none;
+  border-width: 1px 0;
+  margin: 10px 0;
+ 
+}
+
+#maps
+{
+  margin-top: 10px;
+}
+
+#social-fb:hover {
+  color: #3B5998;
+}
+#social-gp:hover {
+  color: #d34836;
+}
+#social-em:hover {
+  color: #f39c12;
+}
+
+h6{
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
+

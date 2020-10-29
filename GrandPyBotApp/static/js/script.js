@@ -9,7 +9,7 @@ $(document).ready(function(){
 
             $("#comment").val('')
 
-            $(".card-history").scrollTop($(document).height()); 
+            $(".card-history").scrollTop($(".row").height()); 
 
         }
 

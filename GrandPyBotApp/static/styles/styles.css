@@ -10,7 +10,11 @@ body {
   text-align: left;
   background-color: rgb(220,220,220)
 }
+.navbar-brand
+{
+  width:100%;
 
+}
 .navbar
 {
 
@@ -20,17 +24,25 @@ body {
 
 }
 
+#test_head
+{
+  margin-top: 5%;
+  white-space: initial;
+  overflow: break-word;
+  padding-left: 8px;
+ 
+}
+
 #form_hist
 {
   padding-top: 20px;
   position: relative;
 }
 
-.navbar-brand
+a.navbar-brand 
 {
-  position: relative;
-  left: 50%;
-  transform: translatex(-50%);
+max-width: 100%;
+
 }
 
 
@@ -68,6 +80,7 @@ body {
   padding-top: 10px;
   background-color: white;
   max-height: 470px;
+  margin-top: 10px;
 }
 
 .btn

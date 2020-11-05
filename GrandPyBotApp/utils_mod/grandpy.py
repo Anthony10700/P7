@@ -11,7 +11,7 @@ import os
 import re
 import unicodedata
 import googlemaps as gm
-
+import config
 
 # Class here ##
 
@@ -31,6 +31,7 @@ class GrandPy:
         self.text_temp = []
         self.maps_dict = {}
         self.text_to_maps = ""
+        self.google_maps_api_key_places = config.key_maps_places
         if path_or_directory == "":
             # regarding this variable i determine if the user to enter a path
             # i saw that an action depending on
@@ -38,7 +39,6 @@ class GrandPy:
         else:
             self.path_or_directory = path_or_directory
 
-    @property.setter
     def set_text_enter(self, phrase):
         """
         This method allows you to assign a value to the variable X
@@ -46,7 +46,7 @@ class GrandPy:
         """
         self.text_enter = phrase
 
-    @property.getter
+    @property
     def get_text_enter(self):
         """
 
@@ -54,7 +54,7 @@ class GrandPy:
         """
         return self.text_enter
 
-    @property.getter
+    @property
     def get_text_exit(self):
         """
 
@@ -62,7 +62,7 @@ class GrandPy:
         """
         return self.text_exit
 
-    @property.getter
+    @property
     def get_maps_dict(self):
         """
 
@@ -70,21 +70,19 @@ class GrandPy:
         """
         return self.maps_dict
 
-    @property
     def start_response(self):
         """
         start_response it allows to execute several methods in a precise order
         to be able to carry out tasks on the text sent by the user such as for example to remove the
         stop words still the accents the spaces or the conjugation
         """
-        self.remove_start_of_sentences
-        self.stop_by_small_word
-        self.stop_by_all_word
-        self.remove_nothing_in_list
-        self.search_on_maps
-        self.add_text_to_dict
+        self.remove_start_of_sentences()
+        self.stop_by_small_word()
+        self.stop_by_all_word()
+        self.remove_nothing_in_list()
+        self.search_on_maps()
+        self.add_text_to_dict()
 
-    @property
     def add_text_to_dict(self):
         """
         In this method I check if the maps dictionary contains the key lat and if so adds a text
@@ -112,7 +110,6 @@ class GrandPy:
 
         return False
 
-    @property
     def stop_by_small_word(self):
         """
             In this method I remove the stop words contained in the stop_by_small_word file
@@ -147,7 +144,6 @@ class GrandPy:
         self.text_exit = self.text_enter.split(" ").copy()
         print(self.text_exit)
 
-    @property
     def remove_nothing_in_list(self):
         """
         In this method I remove in a list the elements which contains nothing at all
@@ -164,7 +160,6 @@ class GrandPy:
         self.text_exit = tmp
         print(tmp)
 
-    @property
     def remove_start_of_sentences(self):
         """
         This method consists in removing the beginning of the user sentence which is always
@@ -172,7 +167,6 @@ class GrandPy:
         """
         self.text_enter = self.text_enter.replace("Que peut tu me dire sur ", '')
 
-    @property
     def search_on_maps(self):
         """
         This method perform a search on google maps Google Maps API according to the number of
@@ -184,7 +178,7 @@ class GrandPy:
         """
         try:
 
-            g_maps = gm.Client(key="AIzaSyBKa902OHL9X6C4Gvlq-YW8vg54OJuhJtw")
+            g_maps = gm.Client(key=self.google_maps_api_key_places)
             self.text_to_maps = ' '.join([str(elem) for elem in self.text_exit])
 
             if self.text_to_maps != "":
@@ -235,7 +229,6 @@ class GrandPy:
             return True
         return False
 
-    @property
     def stop_by_all_word(self):
         """
         This method removes from the sentence a list of words which is saved in a text file.

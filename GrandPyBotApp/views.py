@@ -17,7 +17,7 @@ def init_template_index():
     This method allows to return the index.html page to the client who connects to the site
     :return: the index.html page
     """
-    return render_template('index.html')
+    return render_template('index.html', key_maps_places=config.key_maps_places)
 
 
 @app.route('/chat/', methods=['POST'])
@@ -35,7 +35,7 @@ def chat():
         if request.method == "POST":
             grand_py.set_text_enter(request.json["data"])
             print(grand_py.get_text_enter)
-            grand_py.start_response
+            grand_py.start_response()
 
             if 'lat' in grand_py.get_maps_dict:
                 grand_py.maps_dict.update({'wiki_text': wiki.get_a_resume(grand_py.text_to_maps)})

@@ -1,7 +1,7 @@
-##About Project 7
+## About Project 7
 - This deposit concerns project number 7 of openclassrooms you will find below the instructions for the installation the necessary information
 
-##For installation
+## For installation
 #### In your terminal : 
 * Create a python environment : 
     * `$ pip install virtualenv `

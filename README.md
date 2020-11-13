@@ -18,3 +18,8 @@
 ## Functionality
 
 * You can ask GrandPY what you want and he will answer you with a Maps map and a little Wikipedia story
+
+## Example
+
+![](https://raw.githubusercontent.com/Anthony10700/P7/main/screenshot/1.png)
+![](https://raw.githubusercontent.com/Anthony10700/P7/main/screenshot/2.png)

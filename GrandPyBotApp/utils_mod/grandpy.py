@@ -6,12 +6,12 @@ Created on 31 october 2020
 """
 
 # import here ##
-import json
-import os
-import re
-import unicodedata
+from json import load
+from os import path
+from re import sub
+from unicodedata import normalize
 from GrandPyBotApp.utils_mod.mapsapi import MapsApi
-import config
+from config import KEY_MAPS_PLACES
 
 
 # Class here ##
@@ -32,11 +32,11 @@ class GrandPy:
         self.text_temp = []
         self.maps_dict = {}
         self.text_to_maps = ""
-        self.google_maps_api_key_places = config.KEY_MAPS_PLACES
+        self.google_maps_api_key_places = KEY_MAPS_PLACES
         if path_or_directory == "":
             # regarding this variable i determine if the user to enter a path
             # i saw that an action depending on
-            self.path_or_directory = os.path.dirname(os.path.realpath('__file__'))
+            self.path_or_directory = path.dirname(path.realpath('__file__'))
         else:
             self.path_or_directory = path_or_directory
 
@@ -129,11 +129,11 @@ class GrandPy:
         with open(
                 self.path_or_directory + '//GrandPyBotApp//utils_mod//stopwords-json.json') \
                 as json_file:
-            data = json.load(json_file)
+            data = load(json_file)
 
         self.text_enter = self.text_enter.strip()
         self.text_enter = self.text_enter[0:1].lower() + self.text_enter[1:]
-        self.text_enter = re.sub(r'[^\w]', ' ', self.text_enter)
+        self.text_enter = sub(r'[^\w]', ' ', self.text_enter)
         self.text_enter = self.remove_accents(self.text_enter)
 
         for word_in_data in data:
@@ -202,7 +202,7 @@ class GrandPy:
         :param input_str: input_str is the input value for which the accents will be removed
         :return: The returned value is equal to the input value donate the accents you were removing
         """
-        nfkd_form = unicodedata.normalize('NFKD', input_str)
+        nfkd_form = normalize('NFKD', input_str)
         only_ascii = nfkd_form.encode('ASCII', 'ignore')
         return only_ascii.decode("utf-8")
 

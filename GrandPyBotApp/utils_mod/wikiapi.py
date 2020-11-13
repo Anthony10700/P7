@@ -6,7 +6,7 @@ Created on 07 november 2020
 """
 
 # import here ##
-import requests
+from requests import get
 
 
 # Class here ##
@@ -46,7 +46,7 @@ class WikiApi:
                     "srsearch": search_text,
                     "srlimit": 11}
 
-        my_request = requests.get(self.wiki_url, params=my_param)
+        my_request = get(self.wiki_url, params=my_param)
 
         if 200 >= my_request.status_code < 300:
             self.list_of_result_search_text = my_request.json()['query']['search']
@@ -76,7 +76,7 @@ class WikiApi:
                     "format": "json"
                     }
 
-        my_request = requests.get(self.wiki_url, params=my_param)
+        my_request = get(self.wiki_url, params=my_param)
 
         if 200 >= my_request.status_code < 300:
             return my_request.json()["query"]["pages"][page_id]["extract"].split("\n")[0:3]

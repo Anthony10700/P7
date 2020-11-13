@@ -6,7 +6,7 @@ Created on 11 november 2020
 """
 
 # import here ##
-import json
+from json import dumps, loads
 import GrandPyBotApp.utils_mod.wikiapi as wk
 
 
@@ -20,14 +20,14 @@ def test_search_page_on_wikipedia(requests_mock):
        this method is the test of method search_page_on_wikipedia of class WikiApi
        :type requests_mock: object mock of the requests library
     """
-    result = json.dumps({'query':
+    result = dumps({'query':
                              {'search': [{'title': 'hahaha',
                                           'pageid': "123ici"}]
                               }})
 
     requests_mock.get(url=WK.wiki_url, text=result)
 
-    assert WK.search_page_on_wikipedia("test") == json.loads(result)['query']['search']
+    assert WK.search_page_on_wikipedia("test") == loads(result)['query']['search']
 
 
 def test_get_resume_search(requests_mock):
@@ -42,7 +42,7 @@ def test_get_resume_search(requests_mock):
                 "deux ans par Gustave Eiffel et ses collaborateurs our l’Exposition universelle " \
                 "de Paris de 1889, et initialement nommée « tour de 300 mètres »"
 
-    result = json.dumps({'query': {'pages': {"123ici": {"extract": sentences}}}})
+    result = dumps({'query': {'pages': {"123ici": {"extract": sentences}}}})
 
     requests_mock.get(url=WK.wiki_url, text=result)
     dict_s = {'title': 'hahaha', 'pageid': '123ici'}

@@ -6,7 +6,7 @@ Created on 11 november 2020
 """
 
 # import here ##
-import json
+from json import dumps, loads
 import GrandPyBotApp.utils_mod.mapsapi as mp
 
 
@@ -35,14 +35,14 @@ def test_get_lat_and_lng(requests_mock):
        this method is the test of method get_lat_and_lng of class MapsApi
        :type requests_mock: object mock of the requests library
     """
-    result = json.dumps({'result':
+    result = dumps({'result':
                              {'geometry':
                                   {'location':
                                        {'lat': 54.685278, 'lng': -7.393611}}}})
 
     requests_mock.get(url=MP.base_url + MP.places_details + 'json', text=result)
 
-    assert MP.get_lat_and_lng("test") == json.loads(result)["result"]["geometry"]["location"]
+    assert MP.get_lat_and_lng("test") == loads(result)["result"]["geometry"]["location"]
 
 
 def test_search_places(requests_mock):
@@ -50,7 +50,7 @@ def test_search_places(requests_mock):
        this method is the test of method search_places of class MapsApi
        :type requests_mock: object mock of the requests library
     """
-    result = json.dumps({'predictions':
+    result = dumps({'predictions':
                              [{'description': 'Tour Eiffel, Avenue Anatole France, Paris, France',
                                'matched_substrings': [{'length': 11, 'offset': 0},
                                                       {'length': 5, 'offset': 36}],
@@ -75,4 +75,4 @@ def test_search_places(requests_mock):
 
     requests_mock.get(url=url, text=result)
 
-    assert MP.search_places("test") == json.loads(result)["predictions"]
+    assert MP.search_places("test") == loads(result)["predictions"]

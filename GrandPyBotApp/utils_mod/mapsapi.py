@@ -6,8 +6,8 @@ Created on 07 november 2020
 """
 
 # import here ##
-import requests
-import config as cg
+from requests import get
+from config import KEY_MAPS_PLACES
 
 
 # Class here ##
@@ -21,7 +21,7 @@ class MapsApi:
 
     def __init__(self):
         self.base_url = "https://maps.googleapis.com/maps/api/"
-        self.key_places = cg.KEY_MAPS_PLACES
+        self.key_places = KEY_MAPS_PLACES
         self.places_autocomplete = "place/queryautocomplete/"
         self.places_details = "place/details/"
         self.places_types = "geocode"
@@ -41,7 +41,7 @@ class MapsApi:
         :return: requests object
         """
 
-        return requests.get(base_url + places + 'json', params=my_param)
+        return get(base_url + places + 'json', params=my_param)
 
     def search_places(self, string_search):
         """

@@ -1,8 +1,7 @@
-import logging as lg
-from GrandPyBotApp.views import app
+from logging import warning
 
 
 # Create database connection object
 
 def init_db():
-    lg.warning('Database initialized!')
+    warning('Database initialized!')

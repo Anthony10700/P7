@@ -2,14 +2,14 @@
 flask views file for route http
 """
 
-import json
+from json import dumps
 from flask import Flask, render_template, request
-import config
+from config import STATIC_DIR, KEY_MAPS_PLACES, TEMPLATE_DIR
 from .utils_mod.grandpy import GrandPy
 from .utils_mod.wiki import Wiki
 
 
-app = Flask(__name__, template_folder=config.TEMPLATE_DIR, static_folder=config.STATIC_DIR)
+app = Flask(__name__, template_folder=TEMPLATE_DIR, static_folder=STATIC_DIR)
 
 app.config.from_object('config')
 
@@ -20,7 +20,7 @@ def init_template_index():
     This method allows to return the index.html page to the client who connects to the site
     :return: the index.html page
     """
-    return render_template('index.html', key_maps_places=config.KEY_MAPS_PLACES)
+    return render_template('index.html', key_maps_places=KEY_MAPS_PLACES)
 
 
 @app.route('/chat/', methods=['POST'])
@@ -50,7 +50,7 @@ def chat():
             grand_py.maps_dict.update({'wiki_text': wiki.get_resume_return()})
             grand_py.maps_dict.update(wiki.result[wiki.best_i_similar])
             # print(json.dumps(grand_py.get_maps_dict()))
-            return json.dumps(grand_py.get_maps_dict)
-    return json.dumps({
+            return dumps(grand_py.get_maps_dict)
+    return dumps({
         'text': "Je suis désolé, je n'ai pas compris, peut, tu être plus précis ? "
                 "N'oublie pas que les lieux commence par des majuscules ! :)"})

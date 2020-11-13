@@ -1,5 +1,8 @@
+"""
+flask views file for route http
+"""
+
 import json
-import sys
 from flask import Flask, render_template, request
 import config
 from .utils_mod.grandpy import GrandPy
@@ -17,7 +20,7 @@ def init_template_index():
     This method allows to return the index.html page to the client who connects to the site
     :return: the index.html page
     """
-    return render_template('index.html', key_maps_places=config.key_maps_places)
+    return render_template('index.html', key_maps_places=config.KEY_MAPS_PLACES)
 
 
 @app.route('/chat/', methods=['POST'])
@@ -29,29 +32,25 @@ def chat():
     wiki = None
     grand_py = None
 
-    try:
-        grand_py = GrandPy()
-        wiki = Wiki()
-        if request.method == "POST":
-            grand_py.set_text_enter(request.json["data"])
-            print(grand_py.get_text_enter)
-            grand_py.start_response()
+    grand_py = GrandPy()
+    wiki = Wiki()
 
-            if 'lat' in grand_py.get_maps_dict:
-                grand_py.maps_dict.update({'wiki_text': wiki.get_a_resume(grand_py.text_to_maps)})
+    if request.method == "POST":
+        grand_py.set_text_enter(request.json["data"])
+        print(grand_py.get_text_enter)
 
+        tmp = grand_py.get_text_enter.strip().split(" ")
+        if tmp.__len__() == 1:
+            grand_py.set_text_enter("C'est quoi " + tmp[0])
+
+        grand_py.start_response()
+
+        if 'lat' in grand_py.get_maps_dict:
+            wiki.get_a_resume_to_in_var(grand_py.text_to_maps)
+            grand_py.maps_dict.update({'wiki_text': wiki.get_resume_return()})
+            grand_py.maps_dict.update(wiki.result[wiki.best_i_similar])
             # print(json.dumps(grand_py.get_maps_dict()))
             return json.dumps(grand_py.get_maps_dict)
-
-    except (wiki.instance_wiki.exceptions.PageError,
-            wiki.instance_wiki.exceptions.WikipediaException,
-            wiki.instance_wiki.exceptions.HTTPTimeoutError,
-            wiki.instance_wiki.exceptions.DisambiguationError,
-            wiki.instance_wiki.exceptions.RedirectError,
-            grand_py.inst_gm.exceptions.ApiError, grand_py.inst_gm.exceptions.HTTPError,
-            grand_py.inst_gm.exceptions.Timeout, grand_py.inst_gm.exceptions.TransportError):
-
-        print("Error in try chat :", sys.exc_info()[0])
-        return json.dumps({
-            'text': "Je suis désolé, je n'ai pas compris, peut, tu être plus précis ? N'oublie pas "
-                    "que les lieux commence par des majuscules ! :)"})
+    return json.dumps({
+        'text': "Je suis désolé, je n'ai pas compris, peut, tu être plus précis ? "
+                "N'oublie pas que les lieux commence par des majuscules ! :)"})

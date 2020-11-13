@@ -17,6 +17,10 @@ MP = mp.MapsApi()
 
 
 def test_request_to_maps(requests_mock):
+    """
+       this method is the test of method request_to_maps of class MapsApi
+       :type requests_mock: object mock of the requests library
+    """
     result = "[{'lat': 54.685278, 'lng': -7.393611}]"
     my_param = {'place_id': "ChIJ59EeF7fRX0gRKo9D7athmJk",
                 'key': MP.key_places}
@@ -27,6 +31,10 @@ def test_request_to_maps(requests_mock):
 
 
 def test_get_lat_and_lng(requests_mock):
+    """
+       this method is the test of method get_lat_and_lng of class MapsApi
+       :type requests_mock: object mock of the requests library
+    """
     result = json.dumps({'result':
                              {'geometry':
                                   {'location':
@@ -38,6 +46,10 @@ def test_get_lat_and_lng(requests_mock):
 
 
 def test_search_places(requests_mock):
+    """
+       this method is the test of method search_places of class MapsApi
+       :type requests_mock: object mock of the requests library
+    """
     result = json.dumps({'predictions':
                              [{'description': 'Tour Eiffel, Avenue Anatole France, Paris, France',
                                'matched_substrings': [{'length': 11, 'offset': 0},

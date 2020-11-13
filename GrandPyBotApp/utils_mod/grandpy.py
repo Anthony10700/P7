@@ -44,30 +44,36 @@ class GrandPy:
         """
         This method allows you to assign a value to the variable X
         :param phrase: phrase is the variable at a sign
+        :type : string
         """
         self.text_enter = phrase
 
     @property
     def get_text_enter(self):
         """
-
-        :return:
+        this method allows to recover the variable text_enter
+        :return: text_enter
+        :type : string
         """
         return self.text_enter
 
     @property
     def get_text_exit(self):
         """
+        this method allows to recover the variable text_exit
+        :return: text_exit
+        :type : string
 
-        :return:
         """
         return self.text_exit
 
     @property
     def get_maps_dict(self):
         """
+        this method allows to recover the variable maps_dict
+        :return: maps_dict {}
+        :type : dict
 
-        :return:
         """
         return self.maps_dict
 

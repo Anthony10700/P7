@@ -16,6 +16,10 @@ WK = wk.WikiApi()
 
 
 def test_search_page_on_wikipedia(requests_mock):
+    """
+       this method is the test of method search_page_on_wikipedia of class WikiApi
+       :type requests_mock: object mock of the requests library
+    """
     result = json.dumps({'query':
                              {'search': [{'title': 'hahaha',
                                           'pageid': "123ici"}]
@@ -28,8 +32,8 @@ def test_search_page_on_wikipedia(requests_mock):
 
 def test_get_resume_search(requests_mock):
     """
-
-    :type requests_mock: object
+    this method is the test of method get_resume_search of class WikiApi
+    :type requests_mock: object mock of the requests library
     """
     sentences = "La tour Eiffel est une tour de fer puddlé de 324 mètres de hauteur " \
                 "(avec antennes) située à Paris, à l’extrémité nord-ouest du parc du " \

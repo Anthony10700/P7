@@ -11,6 +11,7 @@ import GrandPyBotApp.utils_mod.mapsapi as mp
 
 
 # Class here ##
+from config import KEY_MAPS_PLACES
 
 MP = mp.MapsApi()
 
@@ -58,7 +59,7 @@ def test_search_places(requests_mock):
                                          'establishment']}]})
 
     url = "https://maps.googleapis.com/maps/api/place/queryautocomplete/json?input=test&types=" \
-          "geocode&language=fr&key=AIzaSyDlyntwR9xgJCugO56RZP4zSg0xcY1X0Eg"
+          "geocode&language=fr&key=" + KEY_MAPS_PLACES
 
     requests_mock.get(url=url, text=result)
 

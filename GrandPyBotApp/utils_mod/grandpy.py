@@ -204,11 +204,11 @@ class GrandPy:
         :return: The returned value is equal to the input value donate the accents you were removing
         """
 
-        try:
+        if type(input_str) == 'str':
+            input_str = input_str
+        else:
             input_str = str(input_str, "utf-8")
 
-        except (UnicodeDecodeError, AttributeError):
-            input_str = input_str
 
         nfkd_form = normalize('NFKD', input_str)
         only_ascii = nfkd_form.encode('ASCII', 'ignore')

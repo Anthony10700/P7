@@ -1,2 +1,9 @@
 /.idea/
 /__pycache__/
+*.pyc
+__pycache__
+env/
+app.db
+fbapp/tests/*.db
+geckodriver.log
+.cache/

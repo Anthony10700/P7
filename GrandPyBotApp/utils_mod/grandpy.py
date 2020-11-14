@@ -83,6 +83,7 @@ class GrandPy:
         to be able to carry out tasks on the text sent by the user such as for example to remove the
         stop words still the accents the spaces or the conjugation
         """
+        print(self.path_or_directory)
         self.__remove_start_of_sentences()
         self.__stop_by_small_word()
         self.__stop_by_all_word()
@@ -212,7 +213,7 @@ class GrandPy:
         :return : this method returns nothing because to the tribe of the class variable value
         """
         print(self.text_enter.split(" "))
-        print(self.path_or_directory)
+
         with open(self.path_or_directory + '//GrandPyBotApp//utils_mod//liste_francais.txt',
                   "r") as file_fd:
             lines = file_fd.read().splitlines()

@@ -7,7 +7,7 @@ from flask import Flask, render_template, request
 from config import STATIC_DIR, KEY_MAPS_PLACES, TEMPLATE_DIR
 from .utils_mod.grandpy import GrandPy
 from .utils_mod.wiki import Wiki
-
+import os
 
 app = Flask(__name__, template_folder=TEMPLATE_DIR, static_folder=STATIC_DIR)
 
@@ -32,7 +32,7 @@ def chat():
     wiki = None
     grand_py = None
 
-    grand_py = GrandPy()
+    grand_py = GrandPy(os.path.abspath(os.path.dirname(__file__)))
     wiki = Wiki()
 
     if request.method == "POST":

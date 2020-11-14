@@ -212,6 +212,7 @@ class GrandPy:
         :return : this method returns nothing because to the tribe of the class variable value
         """
         print(self.text_enter.split(" "))
+        print(self.path_or_directory)
         with open(self.path_or_directory + '//GrandPyBotApp//utils_mod//liste_francais.txt',
                   "r") as file_fd:
             lines = file_fd.read().splitlines()

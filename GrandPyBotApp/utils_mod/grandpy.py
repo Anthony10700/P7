@@ -128,7 +128,7 @@ class GrandPy:
             directly in the variables of the class
         """
         with open(
-                self.path_or_directory + '/utils_mod/stopwords-json.json') \
+                self.path_or_directory + '/utils_mod/stopwords-json.json', "rb") \
                 as json_file:
             data = load(json_file)
 
@@ -215,7 +215,7 @@ class GrandPy:
         print(self.text_enter.split(" "))
 
         with open(self.path_or_directory + '/utils_mod/liste_francais.txt',
-                  "r") as file_fd:
+                  "rb") as file_fd:
             lines = file_fd.read().splitlines()
 
             for word_in_lines in lines:

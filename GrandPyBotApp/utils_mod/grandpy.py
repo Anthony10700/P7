@@ -205,10 +205,11 @@ class GrandPy:
         """
 
         try:
-            input_str = input_str.decode("utf-8")
+            input_str = str(input_str, "utf-8")
+
         except (UnicodeDecodeError, AttributeError):
             input_str = input_str
-        
+
         nfkd_form = normalize('NFKD', input_str)
         only_ascii = nfkd_form.encode('ASCII', 'ignore')
         return only_ascii.decode("utf-8")

@@ -203,6 +203,7 @@ class GrandPy:
         :param input_str: input_str is the input value for which the accents will be removed
         :return: The returned value is equal to the input value donate the accents you were removing
         """
+        input_str = input_str.decode("utf-8")
         nfkd_form = normalize('NFKD', input_str)
         only_ascii = nfkd_form.encode('ASCII', 'ignore')
         return only_ascii.decode("utf-8")

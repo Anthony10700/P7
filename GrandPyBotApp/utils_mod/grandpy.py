@@ -207,7 +207,7 @@ class GrandPy:
         if type(input_str) == str:
             input_str = input_str
         else:
-            input_str = input_str.decode("utf-8")
+            input_str = input_str.decode()
 
 
         nfkd_form = normalize('NFKD', input_str)

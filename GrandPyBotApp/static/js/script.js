@@ -11,8 +11,11 @@ $(document).ready(function () {
         if (comment != "") {
 
             $(".row#card_history_rec").append('<div class="col-10"><div class="card bg-light mb-3 mw-100"><div class="card-header">Me</div><div class="card-body"><p class="card-text">' + comment + '</p></div></div></div>');/* add card light , for user */
-
-            $('#comment').attr("placeholder", "Que peut tu me dire sur : "); /* set placeholder default to aretext , This is an example for user
+            
+            $('#comment').attr("placeholder", "Que peut tu me dire sur : "); 
+           
+             $('#comment').val("");
+            /* set placeholder default to aretext , This is an example for user
             
             $(".card-history").scrollTop($(".card-history")[0].scrollHeight); /* go down to the bottom of the div */
 
@@ -27,7 +30,7 @@ $(document).ready(function () {
                 data: JSON.stringify({ data: comment }),
 
                 success: function (response) {
-                    console.log(response);
+                    //console.log(response);
 
                     if ('lat' in response) {
                         $(".row#card_history_rec").append('<div class="col-10"><div class="card text-white bg-dark mb-3 mw-100"><div class="card-header">Grand Py</div><div class="card-body"><p class="card-text">' + response.text + response.name + '</p></div></div></div>');/* add card dark , for grandpy with the response.text + response.name */
@@ -46,13 +49,13 @@ $(document).ready(function () {
 
                     $("*").css("cursor", "default"); /* set cursor in default in the last of the process */
 
-                    $('#comment').attr("placeholder", "Que peut tu me dire sur : ");
+                   
                 },
                 error: function (error) {
 
                     $("*").css("cursor", "default"); /* set cursor in default in the last of the process */
-
-                    console.log(error);
+                   
+                    //console.log(error);
                 }
             });
 
@@ -63,7 +66,9 @@ $(document).ready(function () {
         /* function for press enter in #comment areatext execute a function click */
         if (e.which == 13) {
             $('#btn_send').click();
-
+            $(this).val('').focus();    
+            return false;
+            
         }
     });
 
@@ -108,6 +113,7 @@ $(document).ready(function () {
         text_hist =  " > " + text_hist + " <a href='https://fr.wikipedia.org/?curid=" + pageid + "' target='_blank' > En savoir plus sur Wikipédia </a> " /* set a default text to user */
         $(".row#card_history_rec").append('<div class="col-10"><div class="card text-white bg-dark mb-3 mw-100"><div class="card-header">Grand Py</div><h6 class="card-title">'+ text_tempo +'</h6><div class="card-body"><p class="card-text">' + text_hist + '</p></div></div></div>'); /* add card dark , it's grand py card*/
     }
+
 
 });
 

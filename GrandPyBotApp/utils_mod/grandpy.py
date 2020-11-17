@@ -11,7 +11,6 @@ from os import path
 from re import sub
 from unicodedata import normalize
 from GrandPyBotApp.utils_mod.mapsapi import MapsApi
-from config import KEY_MAPS_PLACES
 
 
 # Class here ##
@@ -32,7 +31,6 @@ class GrandPy:
         self.text_temp = []
         self.maps_dict = {}
         self.text_to_maps = ""
-        self.google_maps_api_key_places = KEY_MAPS_PLACES
         if path_or_directory == "":
             # regarding this variable i determine if the user to enter a path
             # i saw that an action depending on
@@ -127,8 +125,8 @@ class GrandPy:
             :return : this method does not return anything because it performs operations and stocks
             directly in the variables of the class
         """
-        with open(self.path_or_directory + '/utils_mod/stopwords-json.json', "r", encoding="iso-8859-15") \
-                as json_file:
+        with open(self.path_or_directory + '/utils_mod/stopwords-json.json', "r",
+                  encoding="iso-8859-15") as json_file:
             data = load(json_file)
 
         self.text_enter = self.text_enter.strip()
@@ -203,11 +201,8 @@ class GrandPy:
         :return: The returned value is equal to the input value donate the accents you were removing
         """
 
-        if type(input_str) == str:
-            input_str = input_str
-        else:
+        if not isinstance(input_str, str):
             input_str = input_str.decode()
-
 
         nfkd_form = normalize('NFKD', input_str)
         only_ascii = nfkd_form.encode('ASCII', 'ignore')

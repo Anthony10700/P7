@@ -1,8 +1,11 @@
+""" CONSTANT of flask and API """
 import os
-"""
-CONSTANT of flask and API 
-"""
+import sys
+
 TEMPLATE_DIR = os.path.abspath('GrandPyBotApp/templates')
 STATIC_DIR = os.path.abspath('GrandPyBotApp/static')
-KEY_MAPS_PLACES = os.environ.get('MAPS_KEY')
 
+if "pytest" in sys.modules:
+    KEY_MAPS_PLACES = "YOUR_KEY"
+else:
+    KEY_MAPS_PLACES = os.environ.get('MAPS_KEY')

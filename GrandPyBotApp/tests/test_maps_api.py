@@ -7,9 +7,8 @@ Created on 11 november 2020
 
 # import here ##
 from json import dumps, loads
+
 import GrandPyBotApp.utils_mod.mapsapi as mp
-
-
 # Class here ##
 from config import KEY_MAPS_PLACES
 
@@ -36,9 +35,9 @@ def test_get_lat_and_lng(requests_mock):
        :type requests_mock: object mock of the requests library
     """
     result = dumps({'result':
-                             {'geometry':
-                                  {'location':
-                                       {'lat': 54.685278, 'lng': -7.393611}}}})
+                        {'geometry':
+                             {'location':
+                                  {'lat': 54.685278, 'lng': -7.393611}}}})
 
     requests_mock.get(url=MP.base_url + MP.places_details + 'json', text=result)
 
@@ -51,24 +50,24 @@ def test_search_places(requests_mock):
        :type requests_mock: object mock of the requests library
     """
     result = dumps({'predictions':
-                             [{'description': 'Tour Eiffel, Avenue Anatole France, Paris, France',
-                               'matched_substrings': [{'length': 11, 'offset': 0},
-                                                      {'length': 5, 'offset': 36}],
-                               'place_id': 'ChIJLU7jZClu5kcR4PcOOO6p3I0',
-                               'reference': 'ChIJLU7jZClu5kcR4PcOOO6p3I0',
-                               'structured_formatting': {'main_text': 'Tour Eiffel',
-                                                         'main_text_matched_substrings': [
-                                                             {'length': 11, 'offset': 0}],
-                                                         'secondary_text': 'Avenue Anatole France,'
-                                                                           ' Paris, France',
-                                                         'secondary_text_matched_substrings': [
-                                                             {'length': 5, 'offset': 23}]},
-                               'terms': [{'offset': 0, 'value': 'Tour Eiffel'},
-                                         {'offset': 13, 'value': 'Avenue Anatole France'},
-                                         {'offset': 36, 'value': 'Paris'},
-                                         {'offset': 43, 'value': 'France'}],
-                               'types': ['tourist_attraction', 'point_of_interest',
-                                         'establishment']}]})
+                        [{'description': 'Tour Eiffel, Avenue Anatole France, Paris, France',
+                          'matched_substrings': [{'length': 11, 'offset': 0},
+                                                 {'length': 5, 'offset': 36}],
+                          'place_id': 'ChIJLU7jZClu5kcR4PcOOO6p3I0',
+                          'reference': 'ChIJLU7jZClu5kcR4PcOOO6p3I0',
+                          'structured_formatting': {'main_text': 'Tour Eiffel',
+                                                    'main_text_matched_substrings': [
+                                                        {'length': 11, 'offset': 0}],
+                                                    'secondary_text': 'Avenue Anatole France,'
+                                                                      ' Paris, France',
+                                                    'secondary_text_matched_substrings': [
+                                                        {'length': 5, 'offset': 23}]},
+                          'terms': [{'offset': 0, 'value': 'Tour Eiffel'},
+                                    {'offset': 13, 'value': 'Avenue Anatole France'},
+                                    {'offset': 36, 'value': 'Paris'},
+                                    {'offset': 43, 'value': 'France'}],
+                          'types': ['tourist_attraction', 'point_of_interest',
+                                    'establishment']}]})
 
     url = "https://maps.googleapis.com/maps/api/place/queryautocomplete/json?input=test&types=" \
           "geocode&language=fr&key=" + KEY_MAPS_PLACES

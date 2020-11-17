@@ -9,7 +9,6 @@ Created on 11 november 2020
 from json import dumps, loads
 import GrandPyBotApp.utils_mod.wikiapi as wk
 
-
 # Class here ##
 
 WK = wk.WikiApi()
@@ -21,9 +20,9 @@ def test_search_page_on_wikipedia(requests_mock):
        :type requests_mock: object mock of the requests library
     """
     result = dumps({'query':
-                             {'search': [{'title': 'hahaha',
-                                          'pageid': "123ici"}]
-                              }})
+                        {'search': [{'title': 'hahaha',
+                                     'pageid': "123ici"}]
+                         }})
 
     requests_mock.get(url=WK.wiki_url, text=result)
 

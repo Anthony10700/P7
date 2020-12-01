@@ -74,10 +74,11 @@ class MapsApi:
         result = my_request.json()
 
         if 200 >= my_request.status_code < 300:
-            if result != "Error":
+            if result != "Error" and "result" in result:
                 result = result["result"]["geometry"]["location"]
                 result["lat"] = round(result['lat'], 6)
                 result["lng"] = round(result['lng'], 6)
                 return result
+
 
         return {}

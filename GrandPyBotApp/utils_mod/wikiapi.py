@@ -68,20 +68,20 @@ class WikiApi:
         :type page_id: string
         :return: list of sentences of the Wikipedia page (string) or "request error"
         """
-        page_id = str(page_id)
+        page_id = str(page_id)  # convert page_id int on str
         my_param = {"action": "query",
                     "titles": title,
                     "prop": "extracts",
                     "explaintext": '',
                     "format": "json"
-                    }
+                    }  # Les paramètres de la requête http
 
-        my_request = get(self.wiki_url, params=my_param)
+        my_request = get(self.wiki_url, params=my_param)  # Envoyer la requette http get a url wiki url et les paramètres my_param.
 
-        if 200 >= my_request.status_code < 300:
-            return my_request.json()["query"]["pages"][page_id]["extract"].split("\n")[0:3]
+        if 200 >= my_request.status_code < 300:  # Cette condition vérifie si la requette c'est bien passer.
+            return my_request.json()["query"]["pages"][page_id]["extract"].split("\n")[0:3]  # return les 3 premières phrase de la page wiki.
 
-        return "request error"
+        return "request error"  # return "request error" si my_request renvoie une erreur.
 
     def get_resume_search(self, dict_re_search):
         """

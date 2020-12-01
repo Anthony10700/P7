@@ -127,23 +127,24 @@ class GrandPy:
         """
         with open(self.path_or_directory + '/utils_mod/stopwords-json.json', "r",
                   encoding="iso-8859-15") as json_file:
-            data = load(json_file)
+            data = load(json_file)  # Ouvre le fichier stowods-json qu'openclassroom nous mes a la disposition au chemin de l'aplication.
 
-        self.text_enter = self.text_enter.strip()
-        self.text_enter = self.text_enter[0:1].lower() + self.text_enter[1:]
-        self.text_enter = sub(r'[^\w]', ' ', self.text_enter)
-        self.text_enter = self.remove_accents(self.text_enter)
+        self.text_enter = self.text_enter.strip()  # Retire les espaces inutiles.
+        self.text_enter = self.text_enter[0:1].lower() + self.text_enter[1:]  # Remplace la première lettre majuscule de la phrase en minuscule.
+        self.text_enter = self.remove_accents(self.text_enter)  # Fonction qui retire tous les accents.
+        self.text_enter = sub(r'[^\w]', ' ', self.text_enter)  # Regular expression pour récupérer que les caractère alphanumérique.
 
         for word_in_data in data:
-            word_in_data = " " + self.remove_accents(word_in_data) + " "
+            word_in_data = " " + self.remove_accents(word_in_data) + " "  # Ajout d'espace avant et après pour le mot a comparer.
+            # J'ai fait comme ceci parce que je remplace les accents ou tout caractères alphanumérique par un espace.
 
             for word in self.text_enter.split(" "):
-                word = " " + word + " "
+                word = " " + word + " "  # Ajout d'espace avant et après pour le mot a comparer.
                 if word == word_in_data:
-                    self.text_enter = self.text_enter.replace(word_in_data, ' ')
-        self.text_enter.strip()
-        self.text_temp = self.text_enter.split(" ").copy()
-        self.text_exit = self.text_enter.split(" ").copy()
+                    self.text_enter = self.text_enter.replace(word_in_data, ' ')  # Remplace le mot identique par un espace.
+        self.text_enter.strip()  # Retire les espaces inutiles.
+        self.text_temp = self.text_enter.split(" ").copy()  # Créer une copie de text_enter
+        self.text_exit = self.text_enter.split(" ").copy()  # Créer une copie de text_enter
         print(self.text_exit)
 
     def __remove_nothing_in_list(self):

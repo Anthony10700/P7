@@ -5,8 +5,12 @@ $(document).ready(function () {
        * Function on click to button send.   
        */
         $("*").css("cursor", "progress"); /* set cursor in progress during the process */
-
-        var comment = $("#comment").val().toString();
+        var lt = /</g, 
+        gt = />/g, 
+        ap = /'/g, 
+        ic = /"/g;
+        value = $("#comment").val().toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;");
+        var comment = value;
 
         if (comment != "") {
 
